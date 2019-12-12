@@ -38,7 +38,9 @@ struct LabQuestionsAPI {
                 completionHandler(.failure(.networkClientError(appError)))
             case .success(let data):
                 // [Question] needs to be created
-                // getting resquest , NOT POSTING 
+                // getting resquest , NOT POSTING
+                // Decoder to convert web data to swift
+                // Encoder to convert swift to web data 
                 do {
                     let questionArr = try JSONDecoder().decode([Question].self, from: data)
                     completionHandler(.success(questionArr))
