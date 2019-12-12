@@ -25,13 +25,16 @@ class LabQuestionsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        loadQuestion()
     }
     
     func loadQuestion() {
         LabQuestionsAPI.getQuestions { [weak self] (result) in
             switch result {
             case .failure(let appError):
-                self?.showAlert(title: "App Error", message: "\(appError)")
+                DispatchQueue.main.async {
+                     self?.showAlert(title: "App Error", message: "\(appError)")
+                }
             case .success(let questionData):
                 self?.questions = questionData
             }
