@@ -77,9 +77,19 @@ struct LabQuestionsAPI {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             // provide the data being sent to the API
             request.httpBody = data
+            // execute POST request
+            NetworkHelper.shared.performDataTask(with: request) { (result) in
+                // have data or appError
+                switch result {
+                case .failure(let appError):
+                    completionHandler(.failure(.networkClientError(appError)))
+                case .success:
+                    completionHandler(.success(true))
+                }
+            }
             
         } catch {
-            
+            completionHandler(.failure(.encodingError(error)))
         }
     }
     

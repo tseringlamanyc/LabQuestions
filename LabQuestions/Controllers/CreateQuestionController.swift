@@ -52,7 +52,19 @@ class CreateQuestionController: UIViewController {
         }
         let question = PostedQuestion.init(title: questionTitle, labName: labName, description: labDescription, createdAt: String.getISOTimestamp())
         
-        // POST question using API Client 
+        // POST question using API Client
+        LabQuestionsAPI.postQuestion(question: question) { [weak self ](result) in
+            switch result {
+            case .failure(let appError):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Post Error", message: "\(appError)")
+                }
+            case .success:
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Success in posting", message: "\(questionTitle) was posted")
+                }
+            }
+        }
     }
 }
 
