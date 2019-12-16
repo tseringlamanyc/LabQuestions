@@ -26,15 +26,16 @@ class AnswerQuestionViewController: UIViewController {
     @IBAction func postPressed(_ sender: UIBarButtonItem) {
         // Able to post the users answer to the web api
         
-        guard let answerText = answerTextView.text,
+         guard let answerText = answerTextView.text,
             !answerText.isEmpty,
             let question = question else {
-                showAlert(title: "Missing Answer", message: "Cant post black answers")
-                return
-        }
-        
-        let postedAnswer = PostAnswer(questionTitle: question.title, questionId: question.id, questionLabName: question.labName, answerDescription: answerText)
-        
+            showAlert(title: "Missing Fields", message: "Answer is required, fellow is waiting...")
+            return
+          }
+          
+          // create a PostedAnswer instance
+          let postedAnswer = PostAnswer(questionTitle: question.title, questionId: question.id, questionLabName: question.labName, answerDescription: answerText, createdAt: String.getISOTimestamp())
+          
         LabQuestionsAPI.postAnswer(postedAnswer: postedAnswer) { [weak self](result) in
             switch result {
             case .failure(let appError):
