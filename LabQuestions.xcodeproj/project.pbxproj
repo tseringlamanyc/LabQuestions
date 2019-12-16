@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		520A70E123A7EB5C00139C10 /* AnswerQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520A70E023A7EB5C00139C10 /* AnswerQuestionViewController.swift */; };
+		520A70E323A7EE0400139C10 /* PostAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520A70E223A7EE0400139C10 /* PostAnswer.swift */; };
 		5223F76B23A2AE6E007EF260 /* LabQuestionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5223F76A23A2AE6E007EF260 /* LabQuestionAPI.swift */; };
 		5223F76D23A2AEFB007EF260 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5223F76C23A2AEFB007EF260 /* Question.swift */; };
 		52C6B63423A3E56B00D2534A /* PostedQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C6B63323A3E56B00D2534A /* PostedQuestion.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		520A70E023A7EB5C00139C10 /* AnswerQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionViewController.swift; sourceTree = "<group>"; };
+		520A70E223A7EE0400139C10 /* PostAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnswer.swift; sourceTree = "<group>"; };
 		5223F76A23A2AE6E007EF260 /* LabQuestionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabQuestionAPI.swift; sourceTree = "<group>"; };
 		5223F76C23A2AEFB007EF260 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		52C6B63323A3E56B00D2534A /* PostedQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostedQuestion.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				5223F76C23A2AEFB007EF260 /* Question.swift */,
 				52C6B63323A3E56B00D2534A /* PostedQuestion.swift */,
+				520A70E223A7EE0400139C10 /* PostAnswer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520A70E323A7EE0400139C10 /* PostAnswer.swift in Sources */,
 				52C6B63423A3E56B00D2534A /* PostedQuestion.swift in Sources */,
 				5223F76B23A2AE6E007EF260 /* LabQuestionAPI.swift in Sources */,
 				573109D023A08CBB00635ECE /* AppError.swift in Sources */,

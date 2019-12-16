@@ -87,9 +87,49 @@ struct LabQuestionsAPI {
                     completionHandler(.success(true))
                 }
             }
-            
         } catch {
             completionHandler(.failure(.encodingError(error)))
         }
+    }
+    
+    static func postAnswer(postedAnswer: PostAnswer, completionHandler: @escaping (Result<Bool,AppError>) -> ()) {
+        
+        let answerEndpointURL = "https://5df04c1302b2d90014e1bd66.mockapi.io/answers"
+        
+        guard let url = URL(string: answerEndpointURL) else {
+            completionHandler(.failure(.badURL(answerEndpointURL)))
+            return
+        }
+        
+        do {
+            let data = try JSONEncoder().encode(postedAnswer)
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.httpBody = data
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            /*
+             {
+                 "description": "When I run my app there isn't any data being loaded into my table view",
+                 "title": "Can't get data in my table view - Tsering L",
+                 "labName": "Comic Lab"
+             }
+             */
+            
+            NetworkHelper.shared.performDataTask(with: request) { (result) in
+                switch result {
+                case .failure(let appError):
+                    completionHandler(.failure(.networkClientError(appError)))
+                case .success:
+                    completionHandler(.success(true))
+                }
+            }
+        } catch {
+            completionHandler(.failure(.encodingError(error)))
+        }
+    }
+    
+    static func getAnswer() {
+        
     }
 }

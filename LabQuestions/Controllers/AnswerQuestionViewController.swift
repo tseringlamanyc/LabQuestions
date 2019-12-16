@@ -9,19 +9,43 @@
 import UIKit
 
 class AnswerQuestionViewController: UIViewController {
-
+    
     @IBOutlet weak var answerTextView: UITextView!
-
+    
+    var question: Question?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
     }
     
     @IBAction func postPressed(_ sender: UIBarButtonItem) {
+        // Able to post the users answer to the web api
+        
+        guard let answerText = answerTextView.text,
+            !answerText.isEmpty,
+            let question = question else {
+                showAlert(title: "Missing Answer", message: "Cant post black answers")
+                return
+        }
+        
+        let postedAnswer = PostAnswer(questionTitle: question.title, questionId: question.id, questionLabName: question.labName, answerDescription: answerText)
+        
+        LabQuestionsAPI.postAnswer(postedAnswer: postedAnswer) { [weak self](result) in
+            switch result {
+            case .failure(let appError):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Post Error", message: "\(appError)")
+                }
+            case .success:
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Answer posted", message: "\(answerText) was posted")
+                }
+            }
+        }
     }
-    
-
 }

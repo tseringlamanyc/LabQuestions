@@ -26,6 +26,13 @@ class QuestionDetailController: UIViewController {
         avatarImage.layer.cornerRadius = avatarImage.frame.size.width / 2
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let navigationVC = segue.destination as? UINavigationController, let answerVC = navigationVC.viewControllers.first as? AnswerQuestionViewController else {
+            fatalError()
+        }
+        answerVC.question = question
+    }
+    
     private func updateUI() {
         guard let question = question else {
             fatalError("prepare for segue not properly setup")
@@ -45,6 +52,4 @@ class QuestionDetailController: UIViewController {
             }
         }
     }
-    
-    
 }
