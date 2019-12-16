@@ -123,7 +123,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ayo-yB-jGY" kind="show" identifier="showQuestionDC" id="2sZ-zx-Jnm"/>
+                                            <segue destination="ayo-yB-jGY" kind="show" id="r8C-8F-ZaJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -197,11 +197,75 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wWj-Yq-j6z"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="8Tc-PR-CSv"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="8Tc-PR-CSv">
+                        <barButtonItem key="rightBarButtonItem" title="Answer" id="RUR-ab-7pM">
+                            <connections>
+                                <segue destination="yNt-DD-XGR" kind="presentation" id="5dS-PC-nKX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="avatarImage" destination="Ea4-Su-CpS" id="QkK-Xg-5Kn"/>
+                        <outlet property="labName" destination="s62-mF-saH" id="obh-wg-c4X"/>
+                        <outlet property="questionTextView" destination="lMP-zi-HTi" id="3CF-JT-NyU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NhQ-8a-nkA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1761" y="102"/>
+        </scene>
+        <!--Answer Question-->
+        <scene sceneID="fvU-la-gA1">
+            <objects>
+                <viewController id="nKZ-Oz-bNW" customClass="AnswerQuestionViewController" customModule="LabQuestions" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T7i-ka-B9o">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your Answer Below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WxH-e3-RxU">
+                                <rect key="frame" x="112" y="76" width="190.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.10000000000000001" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qya-a5-cfo">
+                                <rect key="frame" x="20" y="105" width="374" height="295"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WxH-e3-RxU" firstAttribute="centerX" secondItem="T7i-ka-B9o" secondAttribute="centerX" id="9n6-F1-JsR"/>
+                            <constraint firstItem="qya-a5-cfo" firstAttribute="height" secondItem="T7i-ka-B9o" secondAttribute="height" multiplier="0.350356" id="FKM-rn-IXh"/>
+                            <constraint firstItem="WxH-e3-RxU" firstAttribute="top" secondItem="aC3-3V-Oqe" secondAttribute="top" constant="20" id="Gyg-2b-ovA"/>
+                            <constraint firstItem="qya-a5-cfo" firstAttribute="top" secondItem="WxH-e3-RxU" secondAttribute="bottom" constant="8" id="MuO-Yv-7VR"/>
+                            <constraint firstItem="qya-a5-cfo" firstAttribute="leading" secondItem="aC3-3V-Oqe" secondAttribute="leading" constant="20" id="fGO-0u-JPX"/>
+                            <constraint firstItem="aC3-3V-Oqe" firstAttribute="trailing" secondItem="qya-a5-cfo" secondAttribute="trailing" constant="20" id="xvV-je-NKG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aC3-3V-Oqe"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Answer Question" id="xwD-6h-h0E">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="HZe-GG-ctG">
+                            <connections>
+                                <action selector="cancelPressed:" destination="nKZ-Oz-bNW" id="giD-I3-JwA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="IJL-uw-NvZ">
+                            <connections>
+                                <action selector="postPressed:" destination="nKZ-Oz-bNW" id="gcC-Il-r1G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="answerTextView" destination="qya-a5-cfo" id="NDM-af-scd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t5m-bH-APB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3521.739130434783" y="101.78571428571428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dYR-jm-CCC">
@@ -239,6 +303,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INW-0U-PTs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="850.72463768115949" y="-581.25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oD5-j7-E08">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yNt-DD-XGR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7dk-oB-dUV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nKZ-Oz-bNW" kind="relationship" relationship="rootViewController" id="N3L-Td-KFl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F6d-p7-Axd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2611.594202898551" y="101.78571428571428"/>
         </scene>
     </scenes>
     <resources>

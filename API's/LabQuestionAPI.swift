@@ -92,7 +92,4 @@ struct LabQuestionsAPI {
             completionHandler(.failure(.encodingError(error)))
         }
     }
-    
-    
-    
 }

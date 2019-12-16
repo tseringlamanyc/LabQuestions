@@ -60,6 +60,13 @@ class LabQuestionsController: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailVC = segue.destination as? QuestionDetailController, let indexpath = tableView.indexPathForSelectedRow else {
+            fatalError()
+        }
+        detailVC.question = questions[indexpath.row]
+    }
 }
 
 extension LabQuestionsController: UITableViewDataSource {
