@@ -28,15 +28,32 @@ class LabQuestionsController: UIViewController {
         loadQuestion()
     }
     
-    func loadQuestion() {
+    func configureRefreshControl() {
+        refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
+        
+        // runtime API
+        // programmable target-action using objective-c runtime api
+        
+        refreshControl.addTarget(self, action: #selector(loadQuestion), for: .valueChanged)
+    }
+    
+    @objc
+    private func loadQuestion() {
         LabQuestionsAPI.getQuestions { [weak self] (result) in
+            // stops the refresh controller 
+            DispatchQueue.main.async {
+                 self?.refreshControl.endRefreshing()
+            }
             switch result {
             case .failure(let appError):
                 DispatchQueue.main.async {
                      self?.showAlert(title: "App Error", message: "\(appError)")
                 }
             case .success(let questionData):
-                self?.questions = questionData
+                // sorting by date ,,, most recent
+                self?.questions = questionData.sorted {$0.createdAt.isoStringToDate() > $1.createdAt.isoStringToDate()}
+                
             }
         }
     }
@@ -52,6 +69,7 @@ extension LabQuestionsController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "questionCell", for: indexPath)
         let aQuestion = questions[indexPath.row]
         cell.textLabel?.text = aQuestion.title
+        cell.detailTextLabel?.text = aQuestion.createdAt.convertISODate() + " - \(aQuestion.labName)"
         return cell
     }
 }
