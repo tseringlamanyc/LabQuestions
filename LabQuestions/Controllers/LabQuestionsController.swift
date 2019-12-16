@@ -26,6 +26,7 @@ class LabQuestionsController: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         loadQuestion()
+        configureRefreshControl()
     }
     
     func configureRefreshControl() {
@@ -41,19 +42,21 @@ class LabQuestionsController: UIViewController {
     @objc
     private func loadQuestion() {
         LabQuestionsAPI.getQuestions { [weak self] (result) in
-            // stops the refresh controller 
+            // stops the refresh controller
             DispatchQueue.main.async {
-                 self?.refreshControl.endRefreshing()
+                self?.refreshControl.endRefreshing()
             }
             switch result {
             case .failure(let appError):
                 DispatchQueue.main.async {
-                     self?.showAlert(title: "App Error", message: "\(appError)")
+                    self?.showAlert(title: "App Error", message: "\(appError)")
                 }
             case .success(let questionData):
                 // sorting by date ,,, most recent
                 self?.questions = questionData.sorted {$0.createdAt.isoStringToDate() > $1.createdAt.isoStringToDate()}
-                
+                DispatchQueue.main.async {
+                    self?.navigationItem.title = "Lab questions: \(questionData.count)"
+                }
             }
         }
     }
