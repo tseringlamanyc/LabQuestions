@@ -17,4 +17,9 @@ enum AppError: Error {
   case encodingError(Error)
   case badStatusCode(Int) // 404, 500
   case badMimeType(String) // image/jpg
+    
+    // handle more descriptive language for error cases 
+    var description: String {
+        return "AppError: \(self)"
+    }
 }

@@ -9,6 +9,9 @@
 import Foundation
 
 struct LabQuestionsAPI {
+    
+    // to get the questions
+    
     static func getQuestions(completionHandler: @escaping (Result<[Question],AppError>) -> ()) {
         
         let labEndpointURL = "https://5df04c1302b2d90014e1bd66.mockapi.io/questions"
@@ -50,5 +53,36 @@ struct LabQuestionsAPI {
             }
         }
     }
+    
+    // to post the questions
+    static func postQuestion(question: PostedQuestion, completionHandler: @escaping (Result<Bool,AppError>) -> ()) {
+        
+        let endpointURLString = "https://5df04c1302b2d90014e1bd66.mockapi.io/questions"
+        
+        // create a URL
+        guard let url = URL(string: endpointURLString) else {
+            completionHandler(.failure(.badURL(endpointURLString)))
+            return
+        }
+        
+        // convert PostQuestion to data
+        do {
+            let data = try JSONEncoder().encode(question)
+            
+            // configure URL Request
+            var request = URLRequest(url: url)
+            // type of method
+            request.httpMethod = "POST"
+            // type of data
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            // provide the data being sent to the API
+            request.httpBody = data
+            
+        } catch {
+            
+        }
+    }
+    
+    
     
 }

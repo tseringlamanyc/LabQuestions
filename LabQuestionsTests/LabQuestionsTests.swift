@@ -17,9 +17,9 @@ struct CreatedLab: Codable {
 class LabQuestionsTests: XCTestCase {
   func testPostLabQuestion() {
     // arrange
-    let title = "How do we get the image"
-    let labName = "Concurrency Lab"
-    let description = "Not able to use the svg url, what else can we do to get the image url"
+    let title = "How does didSet get called?"
+    let labName = "TableView Lab"
+    let description = "Not sure why didSet is called and its function."
     let createdAt = String.getISOTimestamp()
     
     let lab = PostedQuestion(title: title, labName: labName, description: description, createdAt: createdAt)
@@ -30,9 +30,9 @@ class LabQuestionsTests: XCTestCase {
     
     let url = URL(string: "https://5df04c1302b2d90014e1bd66.mockapi.io/questions")!
     
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    request.httpBody = data
+    var request = URLRequest(url: url) // url
+    request.httpMethod = "POST" // method type
+    request.httpBody = data // data sending to web API
     
     // required to be valid JSON data being uploaded
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -49,7 +49,6 @@ class LabQuestionsTests: XCTestCase {
         exp.fulfill()
       }
     }
-    
     wait(for: [exp], timeout: 5.0)
   }
 }
