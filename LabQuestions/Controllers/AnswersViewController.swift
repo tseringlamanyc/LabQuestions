@@ -24,6 +24,7 @@ class AnswersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self 
         getAnswers()
     }
     
@@ -31,7 +32,18 @@ class AnswersViewController: UIViewController {
         guard let question = question else {
             fatalError()
         }
-        
+        LabQuestionsAPI.getAnswer { [weak self](result) in
+            switch result {
+            case .failure(let appError):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Couldnt get answers", message: "\(appError)")
+                }
+            case .success(let answers):
+                DispatchQueue.main.async {
+                    self?.answers = answers.filter {$0.questionId == question.id}
+                }
+            }
+        }
     }
 }
 

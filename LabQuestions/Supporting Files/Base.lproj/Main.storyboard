@@ -123,7 +123,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ayo-yB-jGY" kind="show" id="r8C-8F-ZaJ"/>
+                                            <segue destination="ayo-yB-jGY" kind="show" identifier="showQuestionVC" id="r8C-8F-ZaJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -141,7 +141,7 @@
                     <navigationItem key="navigationItem" title="Lab Questions" largeTitleDisplayMode="always" id="cjS-NQ-lac">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="vyG-UG-rhG">
                             <connections>
-                                <segue destination="hAl-Dg-guH" kind="show" id="acB-Kn-fhp"/>
+                                <segue destination="hAl-Dg-guH" kind="show" identifier="showQuestions" id="acB-Kn-fhp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
