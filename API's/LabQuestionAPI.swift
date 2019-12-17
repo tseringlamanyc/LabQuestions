@@ -130,7 +130,29 @@ struct LabQuestionsAPI {
     }
     
     
-    static func getAnswer() {
+    static func getAnswer(completionHandler: @escaping (Result<[Answer], AppError>)->()) {
         
+        let answerURLString = "https://5df04c1302b2d90014e1bd66.mockapi.io/answers"
+        
+        guard let url = URL(string: answerURLString) else {
+            completionHandler(.failure(.badURL(answerURLString)))
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        NetworkHelper.shared.performDataTask(with: request) { (result) in
+            switch result {
+            case .failure(let appError):
+                completionHandler(.failure(.networkClientError(appError)))
+            case .success(let data):
+                do {
+                    let answers = try JSONDecoder().decode([Answer].self, from: data)
+                    completionHandler(.success(answers))
+                } catch {
+                    completionHandler(.failure(.decodingError(error)))
+                }
+            }
+        }
     }
 }

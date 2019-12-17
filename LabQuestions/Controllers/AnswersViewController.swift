@@ -12,6 +12,8 @@ class AnswersViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var question: Question?
+    
     var answers = [Answer]() {
         didSet {
             DispatchQueue.main.async {
@@ -26,7 +28,10 @@ class AnswersViewController: UIViewController {
     }
     
     private func getAnswers() {
-       
+        guard let question = question else {
+            fatalError()
+        }
+        
     }
 }
 

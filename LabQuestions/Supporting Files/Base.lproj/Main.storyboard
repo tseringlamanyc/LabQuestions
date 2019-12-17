@@ -192,7 +192,7 @@
                                 <rect key="frame" x="157" y="547" width="100" height="30"/>
                                 <state key="normal" title="Show Answers"/>
                                 <connections>
-                                    <segue destination="ld0-Pd-0AE" kind="show" id="bOh-bo-hbf"/>
+                                    <segue destination="ld0-Pd-0AE" kind="show" identifier="showAnswer" id="bOh-bo-hbf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -218,7 +218,7 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="8Tc-PR-CSv">
                         <barButtonItem key="rightBarButtonItem" title="Answer" id="RUR-ab-7pM">
                             <connections>
-                                <segue destination="yNt-DD-XGR" kind="presentation" id="5dS-PC-nKX"/>
+                                <segue destination="yNt-DD-XGR" kind="presentation" identifier="showAnswerQuestion" id="5dS-PC-nKX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

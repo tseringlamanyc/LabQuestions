@@ -28,10 +28,18 @@ class QuestionDetailController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let navigationVC = segue.destination as? UINavigationController, let answerVC = navigationVC.viewControllers.first as? AnswerQuestionViewController else {
-            fatalError()
+        if segue.identifier == " showAnswerQuestion" {
+            guard let navigationVC = segue.destination as? UINavigationController, let answerVC = navigationVC.viewControllers.first as? AnswerQuestionViewController else {
+                fatalError()
+            }
+            answerVC.question = question
+        } else if segue.identifier == "showAnswer" {
+            // pass the question over to the answersVC
+            guard let answersVC = segue.destination as? AnswersViewController else {
+                fatalError()
+            }
+            answersVC.question = question 
         }
-        answerVC.question = question
     }
     
     private func updateUI() {
