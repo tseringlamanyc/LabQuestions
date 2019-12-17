@@ -13,6 +13,7 @@ class QuestionDetailController: UIViewController {
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var labName: UILabel!
     @IBOutlet weak var questionTextView: UITextView!
+    @IBOutlet weak var questionTitle: UILabel!
     
     var question: Question?
     
@@ -38,6 +39,7 @@ class QuestionDetailController: UIViewController {
             fatalError("prepare for segue not properly setup")
         }
         labName.text = question.name
+        questionTitle.text = question.title
         questionTextView.text = question.description
         avatarImage.getImage(with: question.avatar) { [weak self](result) in
             switch result {

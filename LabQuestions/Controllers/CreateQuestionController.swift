@@ -15,7 +15,11 @@ class CreateQuestionController: UIViewController {
     @IBOutlet weak var labPickerView: UIPickerView!
     
     // for lab picker view
-    private let labs = ["Concurrency", "Comic", "Parsing JSON - Weather, Color, User", "Image and Error Handling", "StocksPeople", "Inro to Unit testing - Jokes, Star Wars, Trivia"].sorted() // a-z
+    private let labs = ["Concurrency", "Comic", "Parsing JSON - Weather, Color, User", "Image and Error Handling",
+    "StocksPeople", "Intro to Unit testing - Jokes, Star Wars, Trivia", "Text-based adventure",
+    "Hangman CLI", "Calculator CLI", "Three Card Monte", "ColorGuessingGame", "TextTwist","Autolayout-Lab",
+    "CardGenerator", "TableView-Sections-Lab", "ZooAnimals", "Game of Thrones", "UpdatingFont", "GroceryList",
+    "Tic Tac Toe", "Hangman iOS app", "Making GET requests - Shows, Episodes"].sorted() // ascending by default a - z
     
     private var labName: String?
     
@@ -34,7 +38,6 @@ class CreateQuestionController: UIViewController {
         descriptionText.layer.borderColor = UIColor.systemGray.cgColor
         descriptionText.layer.borderWidth = 1
     }
-    
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
@@ -81,5 +84,3 @@ extension CreateQuestionController: UIPickerViewDataSource, UIPickerViewDelegate
         return labs[row]
     }
 }
-
-
